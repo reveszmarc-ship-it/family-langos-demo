@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Family Lángos München</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Family Lángos – ungarischer Lángos, Kürtőskalács und Wurstspezialitäten in München, Lerchenauer Str. 160.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: Imbisswagen-Gefühl – großes Foto, Kreidetafel für die Zeiten, eine gelbe Bargeld-Banderole, sonst ruhig. */
+:root{
+  --bg:#FAF9F7; --surface:#F1EDE8; --ink:#231F1C; --muted:#6A615A; --wine:#8E1B2C; --wine-ink:#FFFFFF;
+  --gold:#F0B323; --gold-ink:#231F1C; --board:#2A2927; --board-ink:#F3F1EC; --line:rgba(35,31,28,.12);
+  --miss-bg:#FFF6DA; --miss-bd:#C98A00; --miss-ink:#6B4700;
+  --f-display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --f-body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-chalk:"Caveat", "Comic Sans MS", cursive;
+  --maxw:1180px; --r:18px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#161210; --surface:#221C18; --ink:#F3EEE8; --muted:#B5AAA0; --wine:#C2384C; --wine-ink:#FFFFFF;
+  --gold:#F2BC3A; --gold-ink:#1B1612; --board:#0E0D0C; --board-ink:#F3F1EC; --line:rgba(243,238,232,.14);
+  --miss-bg:#3A2E10; --miss-bd:#E0A72A; --miss-ink:#FFE1A0; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#161210; --surface:#221C18; --ink:#F3EEE8; --muted:#B5AAA0; --wine:#C2384C; --wine-ink:#FFFFFF;
+  --gold:#F2BC3A; --gold-ink:#1B1612; --board:#0E0D0C; --board-ink:#F3F1EC; --line:rgba(243,238,232,.14);
+  --miss-bg:#3A2E10; --miss-bd:#E0A72A; --miss-ink:#FFE1A0; color-scheme:dark; }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);line-height:1.02;letter-spacing:-.025em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.1rem,5.4vw,3.6rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:768px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+section{padding-block:clamp(64px,10vw,120px)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:56ch}
+
+/* Demo-Leiste */
+.demo{background:var(--ink);color:var(--bg);font-size:13px;text-align:center;padding-block:7px}
+.demo .wrap{display:block}
+
+/* Kopf */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;height:68px}
+.brand{display:flex;align-items:center;text-decoration:none;flex:none}
+.brand img{height:52px;width:auto}
+:root[data-theme="dark"] .brand img{background:#fff;border-radius:10px;padding:3px 6px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand img{background:#fff;border-radius:10px;padding:3px 6px}}
+nav.main{display:none;margin-left:auto;gap:28px}
+nav.main a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);position:relative}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--wine);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+nav.main a:hover::after{transform:scaleX(1)}
+.tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+@media(min-width:1024px){nav.main{display:flex}.tools{margin-left:28px}}
+.lang{display:inline-flex;background:var(--surface);border-radius:999px;padding:3px}
+.lang button{font:600 13px/1 var(--f-body);border:0;background:transparent;color:var(--muted);padding:8px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 16px/1 var(--f-body);text-decoration:none;border-radius:999px;padding:16px 24px;cursor:pointer;border:0;transition:transform .2s ease,background-color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-wine{background:var(--wine);color:var(--wine-ink)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-gold{background:var(--gold);color:var(--gold-ink)}
+.hcall{display:none}
+@media(min-width:1024px){.hcall{display:inline-flex;padding:12px 18px;font-size:15px}}
+.burger{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:999px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+@media(min-width:1024px){.burger{display:none}}
+[data-fx-menu]{display:none}
+@media(max-width:1023px){[data-fx-menu]{padding-top:28px}[data-fx-menu] a{text-decoration:none}[data-fx-menu] .mfoot{padding:28px 24px;color:#fff;opacity:.8;font-size:15px}}
+
+/* Hero */
+.hero{padding-block:clamp(20px,4vw,48px) clamp(48px,7vw,88px)}
+.hero-grid{display:grid;gap:28px;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.02fr 1fr;gap:56px}}
+.hero-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3;max-width:100%;background:var(--surface)}
+@media(min-width:900px){.hero-photo{aspect-ratio:5/6;order:2}}
+.hero-photo img{width:100%;height:100%;object-fit:cover;transform-origin:60% 40%}
+.hero-photo .credit{position:absolute;left:14px;bottom:14px;background:rgba(20,16,14,.72);color:#fff;font-size:12.5px;padding:6px 11px;border-radius:999px}
+.hero h1{font-size:clamp(3rem,9.5vw,6.4rem);font-weight:800}
+.hero h1 .accent{color:var(--wine);display:inline-block}
+.hero .sub{margin-top:18px;font-size:clamp(1.12rem,2vw,1.35rem);color:var(--muted);max-width:30ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .ctas .btn{flex:1 1 180px}
+@media(min-width:600px){.hero .ctas .btn{flex:0 0 auto}}
+.hero .phone{margin-top:16px;font-size:15px;color:var(--muted)}
+.hero .phone b{color:var(--ink);font-variant-numeric:tabular-nums;user-select:all}
+.today{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:26px;padding:14px 18px;border-radius:16px;background:var(--surface);font-size:15px;max-width:520px}
+.today strong{font-weight:700}
+.today a{font-weight:600;color:var(--wine);text-decoration:none;white-space:nowrap}
+
+/* Über uns */
+.about-grid{display:grid;gap:40px}
+@media(min-width:900px){.about-grid{grid-template-columns:1fr 1fr;gap:72px;align-items:center}}
+.about-text p+p{margin-top:16px}
+.about-text h2{margin-bottom:24px}
+.collage{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:12px}
+.collage figure{margin:0;border-radius:20px;overflow:hidden;background:var(--surface)}
+.collage img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.collage figure:hover img{transform:scale(1.05)}
+.collage .a{grid-row:1/3;aspect-ratio:3/4}
+.collage .b,.collage .c{aspect-ratio:1/1}
+.steps{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:768px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.steps li{background:var(--surface);border-radius:16px;padding:18px 18px 20px;min-width:0}
+.steps li b{display:block;font-family:var(--f-display);font-size:1.15rem;line-height:1.15;margin-bottom:4px}
+.steps li span{font-size:14.5px;color:var(--muted)}
+.steps-head{margin-top:56px;font-family:var(--f-display);font-size:1.5rem;font-weight:700}
+
+/* Speisekarte */
+.menu{background:var(--surface)}
+.menu-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px 40px;margin-bottom:40px}
+.menu-grid{display:grid;gap:16px}
+@media(min-width:900px){.menu-grid{grid-template-columns:1.35fr 1fr;grid-template-rows:auto auto}}
+.card{background:var(--bg);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card.langos{grid-row:1/3}
+.card .ph{aspect-ratio:16/9;overflow:hidden;background:var(--surface)}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.card .body{padding:24px clamp(20px,3vw,32px) 28px}
+.card h3{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800}
+.card .desc{color:var(--muted);margin-top:6px;font-size:15.5px}
+.prices{list-style:none;margin:20px 0 0;padding:0}
+.prices li{display:flex;align-items:baseline;gap:12px;padding-block:12px;border-top:1px solid var(--line)}
+.prices li:first-child{border-top:0}
+.prices .n{flex:1;min-width:0}
+.prices .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+.prices .p{font-family:var(--f-display);font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{margin-top:16px;font-size:14.5px;color:var(--muted)}
+.card.hk .body{display:flex;flex-direction:column;gap:6px;height:100%}
+.card.hk{background:var(--wine);color:var(--wine-ink)}
+.card.hk .desc{color:rgba(255,255,255,.82)}
+.card.hk .tag{margin-top:auto;padding-top:22px}
+.missing{display:inline-block;font:600 13px/1.35 var(--f-body);color:var(--miss-ink);background:var(--miss-bg);border:2px dashed var(--miss-bd);border-radius:8px;padding:4px 8px;letter-spacing:0;white-space:normal}
+
+/* Öffnungszeiten */
+.hours-grid{display:grid;gap:36px}
+@media(min-width:900px){.hours-grid{grid-template-columns:1fr 1fr;gap:72px;align-items:center}}
+.board{background:var(--board);color:var(--board-ink);border-radius:20px;padding:30px clamp(22px,4vw,40px) 34px;box-shadow:inset 0 0 0 10px #3a2c22,inset 0 0 0 12px #2a1f18;font-family:var(--f-chalk);transform:rotate(-1deg)}
+.board .t{font-size:2.3rem;font-weight:700;text-align:center;margin-bottom:10px;letter-spacing:.01em}
+.board dl{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:22px}
+.board dt,.board dd{margin:0;padding-block:6px;border-bottom:2px solid rgba(243,241,236,.18);font-size:1.75rem;line-height:1.2}
+.board dt{font-weight:700}
+.board dd{opacity:.55}
+.board dd.open{opacity:1;color:var(--gold);font-weight:700}
+.hours-text .weekend{margin-top:22px;padding:18px 20px;border-radius:16px;background:var(--surface);border-left:6px solid var(--wine)}
+.hours-text .weekend b{display:block;font-size:1.1rem}
+.hours-text .btn{margin-top:22px}
+
+/* Bargeld */
+.cash{padding-block:0}
+.cash-box{background:var(--gold);color:var(--gold-ink);border-radius:28px;padding:clamp(26px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px}
+.cash-box svg{width:64px;height:64px;flex:none}
+.cash-box .big{font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1;letter-spacing:-.03em}
+.cash-box .small{font-size:1.05rem;font-weight:500;max-width:40ch}
+.cash-box > div{min-width:0;flex:1 1 280px}
+
+/* Bewertungen */
+.rev-head{display:flex;flex-wrap:wrap;align-items:end;gap:24px 56px;margin-bottom:40px}
+.score{display:flex;align-items:center;gap:18px}
+.score .num{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,10vw,6rem);line-height:.9;letter-spacing:-.04em}
+.stars{display:flex;gap:3px;color:var(--gold)}
+.stars svg{width:22px;height:22px}
+.score small{display:block;color:var(--muted);font-size:15px;margin-top:6px}
+.reviews{display:grid;gap:16px}
+@media(min-width:900px){.reviews{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.review{background:var(--surface);border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.review q{font-size:1.12rem;line-height:1.5;quotes:"„" "“"}
+.review .who{margin-top:auto;font-size:14.5px;color:var(--muted)}
+.review .who b{color:var(--ink)}
+.rev-link{margin-top:24px;display:inline-flex;font-weight:600;color:var(--wine);text-decoration:none}
+
+/* Anfahrt */
+.map-grid{display:grid;gap:20px}
+@media(min-width:900px){.map-grid{grid-template-columns:1.5fr 1fr;align-items:stretch}}
+.map{position:relative;border-radius:24px;overflow:hidden;min-height:320px;background:var(--surface)}
+.map img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin span{background:var(--wine);color:#fff;font-weight:700;font-size:14px;padding:8px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+.pin i{width:14px;height:14px;background:var(--wine);transform:rotate(45deg);margin-top:-8px}
+.pin::after{content:"";width:16px;height:16px;border-radius:50%;background:var(--wine);border:4px solid #fff;margin-top:4px;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(142,27,44,.45)}100%{box-shadow:0 0 0 18px rgba(142,27,44,0)}}
+.map .osm{position:absolute;right:8px;bottom:8px;font-size:11px;background:rgba(255,255,255,.85);color:#333;padding:2px 6px;border-radius:6px}
+.addr{background:var(--bg);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.addr address{font-style:normal;font-size:1.3rem;font-weight:600;line-height:1.4}
+.addr .btn{align-self:flex-start}
+
+/* Kontakt */
+.contact{background:var(--ink);color:var(--bg)}
+.contact .lead{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.contact-grid{display:grid;gap:36px}
+@media(min-width:900px){.contact-grid{grid-template-columns:1.2fr 1fr;gap:72px;align-items:center}}
+.contact h2{color:var(--bg)}
+.tel{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.02em;text-decoration:none;color:var(--gold);margin-top:22px;font-variant-numeric:tabular-nums}
+.socials{display:grid;gap:12px}
+.social{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:18px;background:color-mix(in srgb,var(--bg) 9%,transparent);text-decoration:none;color:var(--bg);font-weight:600;transition:background-color .2s ease}
+.social:hover{background:color-mix(in srgb,var(--bg) 16%,transparent)}
+.social svg{width:28px;height:28px;flex:none}
+.social small{display:block;font-weight:400;opacity:.7;font-size:14px}
+.party{margin-top:26px;font-size:16px;opacity:.85;max-width:44ch}
+
+/* Fuß */
+footer{background:var(--ink);color:color-mix(in srgb,var(--bg) 70%,transparent);font-size:14px;padding-block:28px 34px;border-top:1px solid color-mix(in srgb,var(--bg) 14%,transparent)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+footer .legal{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+footer .legal a{text-decoration:none}
+.made-by{width:100%;font-size:12.5px;opacity:.7;margin-top:6px}
+.made-by a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.imp{display:none;width:100%;margin-top:8px}
+.imp.show{display:block}
+@media(max-width:767px){footer{padding-bottom:96px}}
+
+.hero-photo img{animation:slowzoom 16s ease-in-out infinite alternate}
+@keyframes slowzoom{from{scale:1}to{scale:1.07}}
+
+
+/* Lángos-város (Anfahrt háttér) */
+.city-sec{padding-top:clamp(150px,22vw,260px);position:relative;overflow:clip}
+.city-sec > .wrap{position:relative;z-index:1}
+.fx-deco-host > .city,.city{position:absolute!important;left:0;right:0;top:clamp(10px,2vw,30px);height:clamp(170px,24vw,300px);z-index:0!important;pointer-events:none;color:var(--wine);opacity:.32}
+.city svg{width:100%;height:100%;display:block}
+.city path,.city rect,.city circle,.city ellipse{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.city .kt,.city .c-sun > path:first-child,.city .c-cloud > path{fill:color-mix(in srgb,var(--gold) 45%,transparent)}
+.city .c-sun circle,.city .c-cloud circle{fill:color-mix(in srgb,var(--wine) 25%,transparent)}
+.city .ks{stroke:var(--gold);stroke-width:3}
+.city .dome{fill:color-mix(in srgb,var(--wine) 14%,transparent)}
+.city .road{stroke-dasharray:14 12;animation:road 2.4s linear infinite}
+@keyframes road{to{stroke-dashoffset:-52}}
+.city .truck{animation:truck 22s linear infinite}
+.city .truck path:first-child{fill:var(--wine);stroke:none}
+@keyframes truck{from{transform:translateX(-120px)}to{transform:translateX(1260px)}}
+.city .c-cloud{animation:cloud 26s ease-in-out infinite alternate}
+.city .c2{animation-duration:34s;animation-direction:alternate-reverse}
+@keyframes cloud{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.city .c-sun{transform-box:fill-box;transform-origin:center;animation:sunb 6s ease-in-out infinite}
+@keyframes sunb{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
+.city .steam{stroke-dasharray:40;animation:steam 3s ease-in-out infinite}
+@keyframes steam{0%{stroke-dashoffset:40;opacity:0}40%{opacity:1}100%{stroke-dashoffset:-40;opacity:0}}
+.city-sec h2{position:relative;display:inline-block;background:color-mix(in srgb,var(--surface) 80%,transparent);padding:4px 14px 6px 0;border-radius:0 14px 14px 0}
+/* lebegő motívumok */
+.motifs{position:absolute!important;inset:0;z-index:0!important;pointer-events:none;overflow:hidden}
+.motifs svg{position:absolute;width:var(--s,56px);height:var(--s,56px);opacity:var(--o,.32);color:var(--wine);animation:mfloat var(--d,9s) ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+.motifs svg *{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.motifs svg .g{fill:color-mix(in srgb,var(--gold) 55%,transparent)}
+.contact .motifs svg{color:var(--gold);--o:.3}
+@keyframes mfloat{from{transform:translateY(0) rotate(var(--r0,-8deg))}to{transform:translateY(-22px) rotate(var(--r1,10deg))}}
+@media(max-width:767px){.motifs svg{width:calc(var(--s,56px)*.7);height:calc(var(--s,56px)*.7)}.hero .motifs{display:none}}
+.hero{position:relative;overflow:clip}
+.hero > .wrap{position:relative;z-index:1}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<div class="demo"><div class="wrap" data-i18n="demo">Demo-Webseite für Family Lángos · Vorschau, noch nicht veröffentlicht</div></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Family Lángos"><img src="logo.png" alt="Family Lángos – Genuss aus Ungarn" width="300" height="284"></a>
+    <nav class="main" aria-label="Hauptmenü">
+      <a href="#speisekarte" data-i18n="nav_menu">Speisekarte</a>
+      <a href="#zeiten" data-i18n="nav_hours">Öffnungszeiten</a>
+      <a href="#anfahrt" data-i18n="nav_map">Anfahrt</a>
+      <a href="#kontakt" data-i18n="nav_contact">Kontakt</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Sprache / Nyelv">
+        <button type="button" data-lang="de" aria-pressed="true">DE</button>
+        <button type="button" data-lang="hu" aria-pressed="false">HU</button>
+      </div>
+      <a class="btn btn-wine hcall" href="tel:+4917672302302"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="call">Anrufen</span></a>
+      <button class="burger" type="button" data-fx-menu-btn aria-expanded="false" aria-label="Menü"><span class="fx-burger"><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+  <div data-fx-menu>
+    <a href="#speisekarte" data-i18n="nav_menu">Speisekarte</a>
+    <a href="#zeiten" data-i18n="nav_hours">Öffnungszeiten</a>
+    <a href="#anfahrt" data-i18n="nav_map">Anfahrt</a>
+    <a href="#kontakt" data-i18n="nav_contact">Kontakt</a>
+    <div class="mfoot">Lerchenauer Str. 160 · 80935 München</div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" data-fx-hero data-motifs="3">
+    <div class="wrap hero-grid">
+      <div class="hero-photo"><img src="hero.webp" alt="Frisch gebackener Lángos mit Sauerrahm und Käse" width="1600" height="1200" fetchpriority="high"><span class="credit" data-i18n="hero_credit">Lángos mit Sauerrahm und Käse</span></div>
+      <div data-fx-hero-content>
+        <h1><span data-i18n="h1a">Lángos</span> <span class="accent" data-fx-shine data-i18n="h1b">wie in Ungarn.</span></h1>
+        <p class="sub" data-i18n="slogan">Immer familiär, immer frisch. Direkt aus der Fritteuse, mitten in München.</p>
+        <div class="ctas">
+          <a class="btn btn-wine" href="tel:+4917672302302" data-fx-cta><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="call">Anrufen</span></a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Family+L%C3%A1ngos%2C+Lerchenauer+Str.+160%2C+80935+M%C3%BCnchen" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="route">Route</span></a>
+        </div>
+        <p class="phone">Tel. <b>+49 176 72302302</b></p>
+        <div class="today"><span><strong data-i18n="today_days">Fr 10–17 · Sa 10–16:30 Uhr</strong></span><span data-i18n="today_note">an drei Wochenenden im Monat</span><a href="#zeiten" data-i18n="today_link">Termine ansehen →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div data-fx-marquee="Lángos|Kürtőskalács|Hurka &amp; Kolbász|Genuss aus Ungarn|Lerchenauer Str. 160"></div>
+
+  <section id="ueber-uns" data-fx-deco="FL" data-motifs="3">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 data-i18n="about_h">Eine Familie, ein Wagen, ein Rezept von zu Hause.</h2>
+          <p class="lead" data-i18n="about_p1">Family Lángos ist ein ungarischer Familienbetrieb. Wir backen den Lángos so, wie wir ihn aus Ungarn kennen: außen knusprig, innen weich und mit viel Knoblauch.</p>
+          <p class="lead" data-i18n="about_p2">Dazu gibt es Kürtőskalács vom Spieß und ungarische Wurstspezialitäten. Ein kleines Stück Ungarn in München, und für viele unserer Gäste ein bisschen Zuhause.</p>
+        </div>
+        <div class="collage">
+          <figure class="a"><img src="frying.webp" alt="Lángos wird im Imbisswagen frisch ausgebacken" loading="lazy" width="1200" height="1200"></figure>
+          <figure class="b"><img src="team.webp" alt="Das Family-Lángos-Team im Wagen" loading="lazy" width="1200" height="1200"></figure>
+          <figure class="c"><img src="kuertos-making.webp" alt="Kürtőskalács wird auf den Spieß gewickelt" loading="lazy" width="1200" height="1200"></figure>
+        </div>
+      </div>
+      <p class="steps-head" data-i18n="steps_h">So entsteht Ihr Lángos</p>
+      <ol class="steps" data-fx-pop>
+        <li><b data-i18n="s1b">Veganer Teig</b><span data-i18n="s1">nach ungarischem Rezept</span></li>
+        <li><b data-i18n="s2b">Frisch ausgebacken</b><span data-i18n="s2">direkt vor Ihren Augen</span></li>
+        <li><b data-i18n="s3b">Knoblauchöl</b><span data-i18n="s3">reichlich, wie in Ungarn</span></li>
+        <li><b data-i18n="s4b">Ihr Topping</b><span data-i18n="s4">Sauerrahm, Käse, Schinken, Zwiebeln</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="speisekarte" class="menu" data-fx-deco="FL" data-motifs="4">
+    <div class="wrap">
+      <div class="menu-head">
+        <h2 data-i18n="menu_h">Speisekarte</h2>
+        <p class="lead" data-i18n="menu_lead">Alles frisch am Wagen zubereitet. Was es gerade gibt, sehen Sie an der Tafel.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="card langos" data-fx-spot>
+          <div class="ph"><img src="langos-zwiebel.webp" alt="Lángos mit Sauerrahm, Käse, Schinkenwürfeln und roten Zwiebeln" loading="lazy" width="1000" height="1333"></div>
+          <div class="body">
+            <h3>Lángos</h3>
+            <p class="desc" data-i18n="langos_desc">Ungarisches Hefe-Fladenbrot, frisch frittiert. Der Teig ist vegan.</p>
+            <ul class="prices">
+              <li><span class="n" data-i18n="l1">Mit Knoblauchöl</span><span class="p">5,50 €</span></li>
+              <li><span class="n" data-i18n="l2">Mit Sauerrahm oder nur mit Käse</span><span class="p">6,50 €</span></li>
+              <li><span class="n" data-i18n="l3">Mit Sauerrahm und Käse</span><span class="p">7,00 €</span></li>
+              <li><span class="n" data-i18n="l4">Mit Sauerrahm, Käse, Schinkenwürfeln und Zwiebeln</span><span class="p">7,50 €</span></li>
+              <li><span class="n">Lángosburger</span><span class="p"><span class="missing" data-i18n="miss_price">[Preis – bitte mitteilen]</span></span></li>
+            </ul>
+            <p class="note" data-i18n="smoked">Ab und zu auch mit ungarischem Räucherkäse. Fragen Sie einfach am Wagen.</p>
+          </div>
+        </article>
+        <article class="card" data-fx-spot>
+          <div class="ph"><img src="kuertos.webp" alt="Frischer Kürtőskalács mit Family-Lángos-Etikett" loading="lazy" width="1000" height="804"></div>
+          <div class="body">
+            <h3>Kürtőskalács</h3>
+            <p class="desc" data-i18n="k_desc">Baumstriezel: süß, ofenfrisch und vom Spieß gebacken.</p>
+            <ul class="prices"><li><span class="n" data-i18n="k_item">Kürtőskalács</span><span class="p"><span class="missing" data-i18n="miss_price">[Preis – bitte mitteilen]</span></span></li></ul>
+          </div>
+        </article>
+        <article class="card hk" data-fx-spot>
+          <div class="body">
+            <h3>Hurka &amp; Kolbász</h3>
+            <p class="desc" data-i18n="hk_desc">Ungarische Leber- und Blutwurst und würzige ungarische Bratwurst, heiß vom Grill.</p>
+            <div class="tag"><span class="missing" data-i18n="miss_price">[Preis – bitte mitteilen]</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="zeiten" data-fx-deco="FL" data-motifs="3">
+    <div class="wrap hours-grid">
+      <div class="board" role="img" aria-label="Öffnungszeiten: Freitag 10 bis 17 Uhr, Samstag 10 bis 16:30 Uhr">
+        <div class="t" data-i18n="board_t">Nicht vergessen!</div>
+        <dl>
+          <dt data-i18n="mo">Mo</dt><dd>–</dd>
+          <dt data-i18n="di">Di</dt><dd>–</dd>
+          <dt data-i18n="mi">Mi</dt><dd>–</dd>
+          <dt data-i18n="do">Do</dt><dd>–</dd>
+          <dt data-i18n="fr">Fr</dt><dd class="open">10:00 – 17:00</dd>
+          <dt data-i18n="sa">Sa</dt><dd class="open">10:00 – 16:30</dd>
+          <dt data-i18n="so">So</dt><dd>–</dd>
+        </dl>
+      </div>
+      <div class="hours-text">
+        <h2 data-i18n="hours_h">Öffnungszeiten</h2>
+        <p class="lead" style="margin-top:18px" data-i18n="hours_p">Freitag und Samstag stehen wir mit dem Wagen in der Lerchenauer Straße 160.</p>
+        <div class="weekend"><b data-i18n="weekend_b">Nur an drei Wochenenden im Monat geöffnet.</b><span data-i18n="weekend_s">Welche Wochenenden es sind, posten wir rechtzeitig auf Instagram und Facebook.</span></div>
+        <a class="btn btn-wine" href="https://www.instagram.com/family_langos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-i18n="ig_btn">Aktuelle Termine auf Instagram</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cash" aria-labelledby="cash-t">
+    <div class="wrap">
+      <div class="cash-box" data-fx-ring>
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="16" width="48" height="28" rx="4"/><circle cx="28" cy="30" r="7"/><path d="M12 52h44V24"/></svg>
+        <div><div class="big" id="cash-t" data-i18n="cash_b">Nur Barzahlung</div><p class="small" data-i18n="cash_s">Bitte bringen Sie Bargeld mit. Kartenzahlung ist am Wagen nicht möglich.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bewertungen" data-fx-deco="FL" data-motifs="3">
+    <div class="wrap">
+      <div class="rev-head">
+        <h2 data-i18n="rev_h">Das sagen unsere Gäste</h2>
+        <div class="score">
+          <span class="num">4,8</span>
+          <div>
+            <div class="stars" aria-label="4,8 von 5 Sternen">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg>
+            </div>
+            <small data-i18n="rev_count">33 Bewertungen auf Google</small>
+          </div>
+        </div>
+      </div>
+      <div class="reviews" data-fx-pop>
+        <figure class="review" style="margin:0"><q lang="en">I dare to say, that this is the best, most authentic lángos in Munich! And they make fresh kürtőskalács, a Hungarian patisserie. Excellent!</q><figcaption class="who"><b>Kristóf H.</b> · Google</figcaption></figure>
+        <figure class="review" style="margin:0"><q lang="en">Absolutely spectacular! Friendly family service and delicious Langos. 5 star recommendation!</q><figcaption class="who"><b>Steve R.</b> · Google</figcaption></figure>
+        <figure class="review" style="margin:0"><q lang="hu">Super lángos, nem zsíros és tele minden jóval, ami a lángosra való.</q><figcaption class="who"><b>Ilona J.</b> · Google</figcaption></figure>
+      </div>
+      <a class="rev-link" href="https://www.google.com/maps/place/Family+L%C3%A1ngos/@48.1923485,11.5488993,17z/data=!4m6!3m5!1s0x479e77630ff27707:0x6a0645c4196d02ff!8m2!3d48.1923485!4d11.5488993!16s%2Fg%2F11jdpcd4px" target="_blank" rel="noopener" data-i18n="rev_all">Alle Bewertungen auf Google →</a>
+    </div>
+  </section>
+
+  <section id="anfahrt" class="menu city-sec">
+<div class="city" aria-hidden="true">
+<svg viewBox="0 0 1200 300" preserveAspectRatio="xMinYMax slice">
+  <g class="c-cloud c1"><path d="M120 46c10-18 40-20 52-6 14-10 38-4 40 12 14 2 18 20 4 26-20 6-70 6-92 0-18-6-16-26-4-32z"/><circle cx="150" cy="58" r="4"/><circle cx="178" cy="52" r="3"/></g>
+  <g class="c-cloud c2"><path d="M520 30c8-14 32-16 42-4 12-8 30-2 32 10 12 2 14 16 2 20-16 5-56 5-74 0-14-5-12-20-2-26z"/><circle cx="545" cy="40" r="3"/></g>
+  <g class="c-sun"><path d="M905 40c22-14 56-12 72 8 16 18 14 48-4 64-20 18-56 20-76 4-22-16-24-52-8-68 4-4 8-6 16-8z"/><circle cx="930" cy="70" r="7"/><circle cx="958" cy="58" r="5"/><circle cx="952" cy="92" r="6"/><circle cx="975" cy="80" r="3.5"/><path class="steam" d="M920 30c-8-10 6-16-2-26M945 26c-8-10 6-16-2-26M970 30c-8-10 6-16-2-26"/></g>
+  <g class="c-b">
+    <path d="M20 290V180l55-50 55 50v110"/><rect x="45" y="215" width="20" height="26"/><rect x="85" y="215" width="20" height="26"/>
+    <path class="kt" d="M150 290l8-180q17-14 34 0l8 180z"/><path class="ks" d="M154 270l42-22M155 240l40-22M156 210l38-22M157 180l36-22M158 150l34-20M159 122l30-16"/>
+    <path d="M230 290V175h140v115"/><path d="M245 290V115h45v175M310 290V115h45v175"/>
+    <path class="dome" d="M245 115q-2-38 22-52 24 14 23 52M310 115q-2-38 22-52 24 14 23 52"/><path d="M267 63V46M332 63V46"/><path d="M285 290v-45q15-14 30 0v45"/>
+    <path d="M400 290V150h110v140"/><path class="win" d="M415 170h16v18h-16zM447 170h16v18h-16zM479 170h16v18h-16zM415 205h16v18h-16zM447 205h16v18h-16zM479 205h16v18h-16zM415 240h16v18h-16zM479 240h16v18h-16z"/><path d="M447 290v-32h16v32"/>
+    <path class="kt" d="M535 290l7-150q14-12 28 0l7 150z"/><path class="ks" d="M539 268l34-18M540 240l32-18M541 212l30-18M542 184l28-16M542 158l26-14"/>
+    <path d="M600 290V200l45-40 45 40v90"/><circle cx="645" cy="205" r="10"/>
+    <path d="M715 290V165h120v125"/><path class="win" d="M730 185h18v20h-18zM765 185h18v20h-18zM800 185h18v20h-18zM730 222h18v20h-18zM800 222h18v20h-18z"/><path d="M765 290v-40h18v40"/>
+    <path class="kt" d="M860 290l9-130q16-12 32 0l9 130z"/><path class="ks" d="M864 268l38-20M865 238l36-20M866 208l34-18M867 180l32-16"/>
+    <path d="M935 290V215h110v75"/><path d="M935 215l55-35 55 35"/><rect x="965" y="240" width="20" height="24"/><rect x="1000" y="240" width="20" height="24"/>
+    <path d="M1100 290V80M1094 290l6-210 6 210"/><ellipse cx="1100" cy="112" rx="22" ry="9"/><path d="M1100 80V40"/>
+    <path d="M1130 290V230h60v60"/>
+  </g>
+  <path class="road" d="M0 291h1200"/>
+  <g class="truck"><path d="M0 286v-30h56v30zM56 286v-22h18l10 12v10z"/><path d="M6 262h44"/><circle cx="16" cy="288" r="5"/><circle cx="68" cy="288" r="5"/></g>
+</svg>
+</div>
+    <div class="wrap">
+      <h2 data-i18n="map_h" style="margin-bottom:36px">Anfahrt</h2>
+      <div class="map-grid">
+        <div class="map">
+          <img src="map.webp" alt="Karte: Lerchenauer Straße 160, München-Feldmoching-Hasenbergl" loading="lazy" width="1200" height="800">
+          <div class="pin"><span>Family Lángos</span><i></i></div>
+          <span class="osm">© OpenStreetMap</span>
+        </div>
+        <div class="addr">
+          <address>Lerchenauer Str. 160<br>80935 München</address>
+          <p class="note" style="margin:0" data-i18n="addr_note">Beim Netto-Markt in Feldmoching-Hasenbergl.</p>
+          <a class="btn btn-wine" href="https://www.google.com/maps/dir/?api=1&amp;destination=Family+L%C3%A1ngos%2C+Lerchenauer+Str.+160%2C+80935+M%C3%BCnchen" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="route_long">Route planen</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="contact" data-fx-cta-hide data-fx-deco="FL" data-fx-deco-dark data-motifs="4">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 data-i18n="contact_h">Fragen? Einfach anrufen.</h2>
+        <a class="tel" href="tel:+4917672302302">+49 176 72302302</a>
+        <p class="party" data-i18n="party">Auch für Firmenevents, Feste und Familienfeiern. Sprechen Sie uns an.</p>
+      </div>
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/family_langos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>Instagram<small>@family_langos</small></span></a>
+        <a class="social" href="https://www.facebook.com/familylangos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V9c0-.6.4-1 1-1z"/></svg><span>Facebook<small>facebook.com/familylangos</small></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-fx-cta-hide>
+  <div class="wrap">
+    <span>© 2026 Family Lángos · Lerchenauer Str. 160, 80935 München</span>
+    <div class="legal">
+      <a href="#impressum" id="imp-btn" data-i18n="imprint">Impressum</a>
+      <span class="missing" data-i18n="miss_privacy">[Datenschutz – Text folgt]</span>
+    </div>
+    <div class="imp" id="impressum"><span class="missing" data-i18n="miss_imprint">[Impressum – Name, Anschrift, Kontakt und ggf. Steuernummer des Betreibers bitte mitteilen]</span></div>
+    <p class="made-by" data-i18n-html="madeby">Erstellt von <a href="https://tekingxtra.com" target="_blank" rel="noopener">TekingXtra</a></p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const T = {
+    demo:{de:"Demo-Webseite für Family Lángos · Vorschau, noch nicht veröffentlicht",hu:"Demó weboldal a Family Lángos számára · előnézet, még nincs élesítve"},
+    nav_menu:{de:"Speisekarte",hu:"Étlap"}, nav_hours:{de:"Öffnungszeiten",hu:"Nyitvatartás"}, nav_map:{de:"Anfahrt",hu:"Útvonal"}, nav_contact:{de:"Kontakt",hu:"Kapcsolat"},
+    call:{de:"Anrufen",hu:"Hívás"}, route:{de:"Route",hu:"Útvonal"}, route_long:{de:"Route planen",hu:"Útvonaltervezés"},
+    hero_credit:{de:"Lángos mit Sauerrahm und Käse",hu:"Tejfölös-sajtos lángos"},
+    h1a:{de:"Lángos",hu:"Lángos,"}, h1b:{de:"wie in Ungarn.",hu:"ahogy otthon."},
+    slogan:{de:"Immer familiär, immer frisch. Direkt aus der Fritteuse, mitten in München.",hu:"Mindig családias, mindig friss. Ropogósra sütve, München közepén."},
+    today_days:{de:"Fr 10–17 · Sa 10–16:30 Uhr",hu:"P 10–17 · Szo 10–16:30"},
+    today_note:{de:"an drei Wochenenden im Monat",hu:"havonta három hétvégén"},
+    today_link:{de:"Termine ansehen →",hu:"Időpontok →"},
+    about_h:{de:"Eine Familie, ein Wagen, ein Rezept von zu Hause.",hu:"Egy család, egy büfékocsi, egy otthoni recept."},
+    about_p1:{de:"Family Lángos ist ein ungarischer Familienbetrieb. Wir backen den Lángos so, wie wir ihn aus Ungarn kennen: außen knusprig, innen weich und mit viel Knoblauch.",hu:"A Family Lángos magyar családi vállalkozás. Úgy sütjük a lángost, ahogy otthonról ismerjük: kívül ropogós, belül puha, és bőven jár rá fokhagyma."},
+    about_p2:{de:"Dazu gibt es Kürtőskalács vom Spieß und ungarische Wurstspezialitäten. Ein kleines Stück Ungarn in München, und für viele unserer Gäste ein bisschen Zuhause.",hu:"Mellé nyárson sült kürtőskalács és magyar hurka-kolbász. Egy falatnyi Magyarország Münchenben, egy kis otthon."},
+    steps_h:{de:"So entsteht Ihr Lángos",hu:"Így készül a lángosod"},
+    s1b:{de:"Veganer Teig",hu:"Vegán tészta"}, s1:{de:"nach ungarischem Rezept",hu:"magyar recept szerint"},
+    s2b:{de:"Frisch ausgebacken",hu:"Frissen kisütve"}, s2:{de:"direkt vor Ihren Augen",hu:"a szemed előtt"},
+    s3b:{de:"Knoblauchöl",hu:"Fokhagyma"}, s3:{de:"reichlich, wie in Ungarn",hu:"bőven, ahogy otthon"},
+    s4b:{de:"Ihr Topping",hu:"Ahogy szereted"}, s4:{de:"Sauerrahm, Käse, Schinken, Zwiebeln",hu:"tejföl, sajt, sonka, lilahagyma"},
+    menu_h:{de:"Speisekarte",hu:"Étlap"},
+    menu_lead:{de:"Alles frisch am Wagen zubereitet. Was es gerade gibt, sehen Sie an der Tafel.",hu:"Minden frissen, a büfékocsiban készül. Az aktuális kínálatot a táblán látod."},
+    langos_desc:{de:"Ungarisches Hefe-Fladenbrot, frisch frittiert. Der Teig ist vegan.",hu:"Frissen sütött magyar lángos. A tészta vegán."},
+    l1:{de:"Mit Knoblauchöl",hu:"Fokhagymás"}, l2:{de:"Mit Sauerrahm oder nur mit Käse",hu:"Tejfölös vagy sajtos"},
+    l3:{de:"Mit Sauerrahm und Käse",hu:"Tejfölös-sajtos"}, l4:{de:"Mit Sauerrahm, Käse, Schinkenwürfeln und Zwiebeln",hu:"Tejfölös-sajtos, sonkával és lilahagymával"},
+    miss_price:{de:"[Preis – bitte mitteilen]",hu:"[Ár – kérjük, add meg]"},
+    smoked:{de:"Ab und zu auch mit ungarischem Räucherkäse. Fragen Sie einfach am Wagen.",hu:"Időnként füstölt sajttal is. Kérdezz rá a pultnál!"},
+    k_desc:{de:"Baumstriezel: süß, ofenfrisch und vom Spieß gebacken.",hu:"Édes, frissen, nyárson sütve."},
+    k_item:{de:"Kürtőskalács",hu:"Kürtőskalács"},
+    hk_desc:{de:"Ungarische Leber- und Blutwurst und würzige ungarische Bratwurst, heiß vom Grill.",hu:"Májas és véres hurka, fűszeres magyar kolbász, forrón."},
+    board_t:{de:"Nicht vergessen!",hu:"Ne felejtsd el!"},
+    mo:{de:"Mo",hu:"H"}, di:{de:"Di",hu:"K"}, mi:{de:"Mi",hu:"Sze"}, do:{de:"Do",hu:"Cs"}, fr:{de:"Fr",hu:"P"}, sa:{de:"Sa",hu:"Szo"}, so:{de:"So",hu:"V"},
+    hours_h:{de:"Öffnungszeiten",hu:"Nyitvatartás"},
+    hours_p:{de:"Freitag und Samstag stehen wir mit dem Wagen in der Lerchenauer Straße 160.",hu:"Pénteken és szombaton a Lerchenauer Straße 160. alatt vár a büfékocsink."},
+    weekend_b:{de:"Nur an drei Wochenenden im Monat geöffnet.",hu:"Csak havonta három hétvégén vagyunk nyitva."},
+    weekend_s:{de:"Welche Wochenenden es sind, posten wir rechtzeitig auf Instagram und Facebook.",hu:"Hogy melyik hétvégéken, azt időben kiírjuk Instagramon és Facebookon."},
+    ig_btn:{de:"Aktuelle Termine auf Instagram",hu:"Aktuális napok Instagramon"},
+    cash_b:{de:"Nur Barzahlung",hu:"Csak készpénz"},
+    cash_s:{de:"Bitte bringen Sie Bargeld mit. Kartenzahlung ist am Wagen nicht möglich.",hu:"Hozz magaddal készpénzt, kártyával nálunk nem lehet fizetni."},
+    rev_h:{de:"Das sagen unsere Gäste",hu:"Ezt mondják a vendégeink"},
+    rev_count:{de:"33 Bewertungen auf Google",hu:"33 Google-értékelés"},
+    rev_all:{de:"Alle Bewertungen auf Google →",hu:"Összes értékelés a Google-on →"},
+    map_h:{de:"Anfahrt",hu:"Hol találsz meg?"},
+    addr_note:{de:"Beim Netto-Markt in Feldmoching-Hasenbergl.",hu:"A Netto áruháznál, Feldmoching-Hasenberglben."},
+    contact_h:{de:"Fragen? Einfach anrufen.",hu:"Kérdésed van? Hívj minket!"},
+    party:{de:"Auch für Firmenevents, Feste und Familienfeiern. Sprechen Sie uns an.",hu:"Céges rendezvényre, ünnepségre, családi eseményre is kitelepülünk. Keress minket!"},
+    imprint:{de:"Impressum",hu:"Impresszum"},
+    miss_privacy:{de:"[Datenschutz – Text folgt]",hu:"[Adatvédelem – szöveg később]"},
+    miss_imprint:{de:"[Impressum – Name, Anschrift, Kontakt und ggf. Steuernummer des Betreibers bitte mitteilen]",hu:"[Impresszum – az üzemeltető neve, címe, elérhetősége és adószáma szükséges]"},
+    madeby:{de:'Erstellt von <a href="https://tekingxtra.com" target="_blank" rel="noopener">TekingXtra</a>',hu:'Készítette: <a href="https://tekingxtra.com" target="_blank" rel="noopener">TekingXtra</a>'}
+  };
+  const setLang = (l) => {
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[el.dataset.i18n]; if (v && v[l]) el.textContent = v[l]; });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = T[el.dataset.i18nHtml]; if (v && v[l]) el.innerHTML = v[l]; });
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+    const pill = document.querySelector('.fx-pill span'); if (pill) pill.textContent = T.call[l];
+    try { localStorage.setItem('fl-lang', l); } catch (e) {}
+  };
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  let l = 'de';
+  try { const q = new URLSearchParams(location.search).get('lang'); const s = localStorage.getItem('fl-lang'); l = q || s || ((navigator.language || '').startsWith('hu') ? 'hu' : 'de'); } catch (e) {}
+  if (l !== 'de' && l !== 'hu') l = 'de';
+  window.__flLang = l;
+  setLang(l);
+
+  // lebegő lángos-motívumok
+  const M = [
+    '<svg viewBox="0 0 64 64"><path class="g" d="M14 18c10-10 30-12 40 0 10 12 8 28-2 36-12 9-32 9-42-2C2 42 4 26 14 18z"/><circle cx="26" cy="28" r="3"/><circle cx="40" cy="24" r="2"/><circle cx="36" cy="42" r="3.5"/></svg>',
+    '<svg viewBox="0 0 64 64"><path class="g" d="M24 58l4-48q4-4 8 0l4 48z"/><path d="M25 50l14-6M26 40l12-6M27 30l10-5M28 20l8-4"/></svg>',
+    '<svg viewBox="0 0 64 64"><path class="g" d="M30 14c-14 4-20 22-14 36 4 8 12 8 16 2 8-12 12-26 6-36-2-3-5-3-8-2z"/><path d="M32 14c0-6 4-8 8-8"/></svg>',
+    '<svg viewBox="0 0 64 64"><path d="M20 50c-8-10 8-16 0-26s8-16 2-22M34 52c-8-10 8-16 0-26s8-16 2-22M48 50c-8-10 8-16 0-26s8-16 2-22"/></svg>',
+    '<svg viewBox="0 0 64 64"><path d="M32 6l6 18 20 2-15 12 5 20-16-11-16 11 5-20L6 26l20-2z"/></svg>',
+    '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle class="g" cx="32" cy="32" r="12"/></svg>'
+  ];
+  {
+    let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    document.querySelectorAll('[data-motifs]').forEach((sec, si) => {
+      const n = +sec.dataset.motifs || 3; const box = document.createElement('div'); box.className = 'motifs'; box.setAttribute('aria-hidden','true');
+      let html = '';
+      for (let i = 0; i < n; i++) {
+        const left = i === 0 ? 74 + rnd() * 10 : (i % 2 ? 0.5 + rnd() * 6 : 88 + rnd() * 7);
+        const top = i === 0 ? 2 + rnd() * 4 : 12 + (i / n) * 76 + rnd() * 8;
+        const sz = 38 + Math.round(rnd() * 40);
+        html += M[(si * 2 + i) % M.length].replace('<svg ', `<svg style="left:${left.toFixed(1)}%;top:${top.toFixed(1)}%;--s:${sz}px;--d:${(7 + rnd() * 6).toFixed(1)}s;--dl:${(-rnd() * 6).toFixed(1)}s;--r0:${Math.round(-15 + rnd() * 10)}deg;--r1:${Math.round(5 + rnd() * 15)}deg" `);
+      }
+      box.innerHTML = html; sec.prepend(box);
+    });
+  }
+  const ib = document.getElementById('imp-btn'), imp = document.getElementById('impressum');
+  ib.addEventListener('click', e => { e.preventDefault(); imp.classList.toggle('show'); });
+})();
+</script>
+
+<style>
+  :root { --fx-accent: #8E1B2C; --fx-ink: #231F1C; --fx-glint: #F0B323; --fx-soft: #F0B323; --fx-hh: 64px; }
+  @property --fx-ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  /* szakaszcímek beúszása */
+  .fx-h { clip-path: inset(0 0 100% 0); transform: translateY(.35em); transition: clip-path .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+  .fx-h.fx-in { clip-path: inset(-20% -5% -20% -5%); transform: none; }
+  /* felpattanó elemek */
+  .fx-pop-item { opacity: 0; transform: translateY(12px) scale(.86); transition: opacity .5s ease, transform .6s cubic-bezier(.2,1.5,.4,1); transition-delay: var(--fx-d, 0ms); }
+  .fx-pop-item.fx-in { opacity: 1; transform: none; }
+  /* fénycsík a szövegen */
+  .fx-shine-on { color: transparent !important; -webkit-background-clip: text; background-clip: text; background-size: 260% 100%;
+    background-image: linear-gradient(110deg, var(--fx-base) 0 42%, var(--fx-glint) 50%, var(--fx-base) 58% 100%); animation: fxTextShine 4.8s ease-in-out 1s infinite; }
+  @keyframes fxTextShine { 0% { background-position: 100% 0; } 45%, 100% { background-position: 0% 0; } }
+  /* gomb-csillanás */
+  .fx-btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+  .fx-btn-shine::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; z-index: -1; pointer-events: none;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,.4), transparent); transform: skewX(-18deg); animation: fxBtnShine 5.5s ease-in-out 2s infinite; }
+  @keyframes fxBtnShine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
+  /* rögzített lépések */
+  /* rögzítés CSAK gépen (Márton: telefonon ne akadjon meg a görgetés) – mobilon sima húzható kártyasor */
+  @media (min-width: 768px) { .fx-steps-track { height: 230vh; overflow: clip !important; } .fx-steps-track .fx-steps-box { position: sticky !important; } } /* !important: a .fx-deco-host > * { relative } szabály ne írja felül */
+  @media (max-width: 767px) { .fx-steps-track .fx-bar { display: none; } }
+  .fx-steps-list > * { transition: transform .55s cubic-bezier(.2,.8,.2,1), background-color .55s ease, color .55s ease, opacity .55s ease; }
+  .fx-steps-list > .fx-on { background: var(--fx-ink) !important; color: #fff; transform: translateY(-10px); }
+  .fx-steps-list > .fx-on * { color: inherit !important; }
+  @media (max-width: 767px) {
+    .fx-steps-list { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; scrollbar-width: none; }
+    .fx-steps-list::-webkit-scrollbar { display: none; }
+    .fx-steps-list > * { flex: 0 0 78%; scroll-snap-align: start; }
+    .fx-steps-list > :not(.fx-on) { opacity: .55; transform: scale(.94); }
+  }
+  .fx-bar { height: 4px; border-radius: 9999px; background: rgba(148,163,184,.3); margin-top: 22px; overflow: hidden; }
+  .fx-bar > i { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--fx-accent); position: relative; overflow: hidden; }
+  .fx-bar > i::after { content: ''; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent); animation: fxBarGlint 1.6s linear infinite; }
+  @keyframes fxBarGlint { from { transform: translateX(-100%); } to { transform: translateX(300%); } }
+  /* lebegő mobil CTA */
+  .fx-pill { display: none; }
+  @media (max-width: 767px) {
+    .fx-pill { display: inline-flex; position: fixed; left: 50%; bottom: 18px; z-index: 60; align-items: center; gap: 8px; white-space: nowrap; text-decoration: none;
+      background: var(--fx-ink); color: #fff; font-weight: 600; font-size: 15px; padding: 14px 22px; border-radius: 9999px; box-shadow: 0 12px 30px -10px rgba(0,0,0,.55);
+      transform: translate(-50%, 160%); transition: transform .55s cubic-bezier(.2,1.2,.3,1); }
+    .fx-pill.fx-show { transform: translate(-50%, 0); }
+  }
+  /* haladásjelző */
+  .fx-prog { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; pointer-events: none; z-index: 5; }
+  .fx-prog > i { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--fx-accent); }
+  /* mozgó szalag */
+  .fx-band { position: relative; overflow: hidden; background: var(--fx-ink); padding: 22px 0; }
+  .fx-track { display: flex; width: max-content; animation: fxMarq 38s linear infinite; }
+  .fx-track span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; color: #fff; font-weight: 600; font-size: 30px; letter-spacing: -.01em; white-space: nowrap; }
+  .fx-track span:nth-child(even) { color: transparent; -webkit-text-stroke: 1.2px var(--fx-soft); }
+  .fx-track svg { width: 16px; height: 16px; flex: none; }
+  @keyframes fxMarq { to { transform: translateX(-50%); } }
+  @media (min-width: 768px) { .fx-track span { font-size: 44px; } .fx-band { padding: 30px 0; } }
+  /* fény a kártyákon */
+  [data-fx-spot] { position: relative; }
+  [data-fx-spot]::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s ease;
+    background: radial-gradient(260px circle at var(--fx-mx, 50%) var(--fx-my, 50%), color-mix(in srgb, var(--fx-accent) 16%, transparent), transparent 70%); }
+  [data-fx-spot]:hover::after, [data-fx-spot].fx-tap::after { opacity: 1; }
+  /* körbefutó fény */
+  [data-fx-ring] { position: relative; }
+  [data-fx-ring] > .absolute, [data-fx-ring] > [data-fx-above] { z-index: 3; } /* címkék, matricák a csillogás FÖLÖTT */
+  [data-fx-ring]::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; pointer-events: none; z-index: 2;
+    background: conic-gradient(from var(--fx-ang), transparent 0 62%, var(--fx-soft) 76%, var(--fx-glint) 82%, var(--fx-soft) 88%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: fxRing 4s linear infinite; }
+  @keyframes fxRing { to { --fx-ang: 360deg; } }
+  /* háttér-motívumok (az ügyfél monogramjával) */
+  .fx-deco-host { position: relative; overflow: clip; }
+  .fx-deco-host > :not(.fx-deco) { position: relative; z-index: 1; }
+  .fx-deco { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .fx-deco > * { position: absolute; opacity: 0; transition: opacity 1.2s ease; }
+  .fx-deco.fx-in > * { opacity: var(--o, 1); }
+  .fx-mono { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: clamp(200px, 22vw, 340px); line-height: 1; color: transparent;
+    -webkit-text-stroke: 1.2px color-mix(in srgb, var(--fx-accent) 22%, transparent); animation: fxBreath 9s ease-in-out infinite; }
+  .fx-deco.dark .fx-mono { -webkit-text-stroke-color: color-mix(in srgb, var(--fx-soft) 22%, transparent); }
+  .fx-dots { width: 160px; height: 160px; background-image: radial-gradient(color-mix(in srgb, var(--fx-accent) 35%, transparent) 1.2px, transparent 1.6px); background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 72%); mask-image: radial-gradient(circle, #000 35%, transparent 72%); animation: fxDrift 14s ease-in-out infinite alternate; }
+  .fx-dia { width: 22px; height: 22px; border: 1.3px solid var(--fx-accent); --o: .5; }
+  .fx-deco.dark .fx-dia { border-color: var(--fx-soft); }
+  .fx-dia.spin { animation: fxSpin 16s linear infinite; } .fx-dia.float { animation: fxFloat 7s ease-in-out infinite; }
+  .fx-line { width: 2px; height: 170px; background: var(--fx-accent); --o: .35; transform-origin: top; transform: scaleY(0); transition: transform 2.2s cubic-bezier(.2,.8,.2,1) .3s, opacity 1s ease; }
+  .fx-deco.fx-in .fx-line { transform: scaleY(1); }
+  .fx-orb { width: 220px; height: 220px; border-radius: 9999px; background: var(--fx-accent); filter: blur(55px); --o: .10; animation: fxDrift 20s ease-in-out infinite alternate; }
+  @keyframes fxBreath { 0%,100% { scale: 1; rotate: -3deg; } 50% { scale: 1.07; rotate: 3deg; } }
+  @keyframes fxDrift { from { transform: translate(0,0) rotate(0); } to { transform: translate(34px,-26px) rotate(8deg); } }
+  @keyframes fxSpin { from { transform: rotate(45deg); } to { transform: rotate(405deg); } }
+  @keyframes fxFloat { 0%,100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-18px) rotate(90deg); } }
+  /* animált mobilmenü */
+  .fx-burger { display: block; position: relative; width: 24px; height: 18px; }
+  .fx-burger i { position: absolute; left: 0; width: 24px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .45s cubic-bezier(.7,0,.2,1), opacity .25s ease, top .45s cubic-bezier(.7,0,.2,1), width .3s ease; }
+  .fx-burger i:nth-child(1) { top: 0; } .fx-burger i:nth-child(2) { top: 8px; width: 16px; } .fx-burger i:nth-child(3) { top: 16px; }
+  .fx-open .fx-burger i:nth-child(1) { top: 8px; transform: rotate(45deg); }
+  .fx-open .fx-burger i:nth-child(2) { opacity: 0; transform: translateX(10px); }
+  .fx-open .fx-burger i:nth-child(3) { top: 8px; transform: rotate(-45deg); }
+  @media (max-width: 1023px) {
+    [data-fx-menu] { display: block !important; position: absolute; left: 0; right: 0; top: 100%; height: calc(100dvh - var(--fx-hh)); overflow-y: auto; background: var(--fx-ink); z-index: 50;
+      clip-path: circle(0px at calc(100% - 36px) -32px); visibility: hidden; transition: clip-path .7s cubic-bezier(.7,0,.2,1), visibility 0s linear .7s; }
+    [data-fx-menu].fx-open { clip-path: circle(160% at calc(100% - 36px) -32px); visibility: visible; transition: clip-path .75s cubic-bezier(.7,0,.2,1), visibility 0s; }
+    [data-fx-menu] a { display: block; color: #fff; font-size: 32px; font-weight: 600; line-height: 1.2; padding: 10px 24px; opacity: 0; transform: translateY(26px);
+      transition: opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1); transition-delay: var(--fx-d, 0ms); }
+    [data-fx-menu].fx-open a { opacity: 1; transform: none; }
+    html.fx-lock { overflow: hidden; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fx-h, .fx-pop-item { clip-path: none; opacity: 1; transform: none; transition: none; }
+    .fx-shine-on { animation: none; color: var(--fx-base) !important; background: none; }
+    .fx-btn-shine::after, .fx-track, [data-fx-ring]::before, .fx-deco * { animation: none !important; }
+    .fx-steps-track { height: auto; } .fx-steps-box { position: relative; top: 0 !important; }
+    [data-fx-menu], [data-fx-menu] a { transition: none !important; }
+  }
+</style>
+<script>
+(() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MOBILE = () => matchMedia('(max-width: 767px)').matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const header = $('header');
+  const hh = () => (header ? header.getBoundingClientRect().height : 0);
+  document.documentElement.style.setProperty('--fx-hh', hh() + 'px');
+  const ticks = []; let ticking = false;
+  const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticks.forEach(f => f()); ticking = false; }); };
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll);
+  const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fx-in'); seen.unobserve(e.target); } }), { threshold: .15 });
+
+  if (!RM) {
+    // szakaszcímek
+    // a kitakart (clip-path) címet az IntersectionObserver nem látja → a szülőjét figyeljük
+    const hObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll(':scope > .fx-h').forEach(x => x.classList.add('fx-in')); hObs.unobserve(e.target); } }), { threshold: .1 });
+    $$('section h2').forEach(h => { h.classList.add('fx-h'); hObs.observe(h.parentElement); });
+    // felpattanó elemek
+    $$('[data-fx-pop]').forEach(list => [...list.children].forEach((c, i) => { c.classList.add('fx-pop-item'); c.style.setProperty('--fx-d', Math.min(i, 6) * 80 + 'ms'); seen.observe(c); }));
+    // fénycsík a szövegen
+    $$('[data-fx-shine]').forEach(el => { el.style.setProperty('--fx-base', getComputedStyle(el).color); el.classList.add('fx-shine-on'); });
+  }
+  // hero: zoom + elúszás
+  const hero = $('[data-fx-hero]');
+  if (hero && !RM) {
+    const media = $('video, img', hero), content = $('[data-fx-hero-content]', hero);
+    ticks.push(() => {
+      const p = Math.min(Math.max(scrollY / hero.offsetHeight, 0), 1);
+      if (media) media.style.transform = 'scale(' + (1 + p * .12).toFixed(3) + ')';
+      if (content) { content.style.transform = 'translateY(' + (p * 60).toFixed(1) + 'px)'; content.style.opacity = (1 - p * .7).toFixed(2); }
+    });
+  }
+  // rögzített lépések
+  $$('[data-fx-steps]').forEach(list => {
+    if (RM) return;
+    const sec = list.closest('section'); if (!sec) return;
+    const box = list.parentElement.closest('section > *') || list.parentElement;
+    sec.classList.add('fx-steps-track'); box.classList.add('fx-steps-box'); list.classList.add('fx-steps-list');
+    const items = [...list.children];
+    const bar = document.createElement('div'); bar.className = 'fx-bar'; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = '<i></i>'; list.after(bar);
+    const center = () => { box.style.top = MOBILE() ? '' : Math.max(hh() + 28, (innerHeight - box.offsetHeight) / 2) + 'px'; }; // telefonon NINCS eltolás
+    center(); addEventListener('resize', center);
+    let last = -1;
+    if (MOBILE()) { /* telefonon: húzáskor a középső kártya kiemelve */
+      const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('fx-on', e.intersectionRatio > .6)), { root: list, threshold: [0, .6, 1] });
+      items.forEach(it => io.observe(it));
+    }
+    ticks.push(() => {
+      if (MOBILE()) return;
+      const r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
+      const p = Math.min(Math.max(-r.top / Math.max(total, 1), 0), 1);
+      bar.firstChild.style.width = (p * 100).toFixed(1) + '%';
+      const idx = Math.min(items.length - 1, Math.floor(p * items.length * .999));
+      if (idx !== last && r.top < innerHeight && r.bottom > 0) {
+        last = idx; items.forEach((it, i) => it.classList.toggle('fx-on', i === idx));
+        if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: items[idx].offsetLeft - items[0].offsetLeft, behavior: 'smooth' });
+      }
+    });
+  });
+  // lebegő mobil CTA
+  const cta = $('[data-fx-cta]');
+  if (cta) {
+    cta.classList.add('fx-btn-shine');
+    const pill = document.createElement('a'); pill.className = 'fx-pill fx-btn-shine'; pill.href = cta.href; if (cta.target) { pill.target = cta.target; pill.rel = 'noopener'; }
+    pill.innerHTML = '<span>' + cta.textContent.trim() + '</span><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    document.body.appendChild(pill);
+    const heroSec = $('main > section, body > section'), hide = $$('[data-fx-cta-hide]');
+    ticks.push(() => {
+      pill.href = cta.href;
+      const past = heroSec && heroSec.getBoundingClientRect().bottom < 0;
+      const covered = hide.some(s => { const r = s.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+      pill.classList.toggle('fx-show', past && !covered && !document.documentElement.classList.contains('fx-lock'));
+    });
+  }
+  $$('a[data-fx-shine-btn]').forEach(a => a.classList.add('fx-btn-shine'));
+  // haladásjelző
+  if (header) {
+    if (getComputedStyle(header).position === 'static') header.style.position = 'relative';
+    const p = document.createElement('div'); p.className = 'fx-prog'; p.setAttribute('aria-hidden', 'true'); p.innerHTML = '<i></i>'; header.appendChild(p);
+    ticks.push(() => { const max = document.documentElement.scrollHeight - innerHeight; p.firstChild.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0).toFixed(4) + ')'; });
+  }
+  // mozgó szalag
+  $$('[data-fx-marquee]').forEach(m => {
+    const words = m.getAttribute('data-fx-marquee').split('|').map(s => s.trim()).filter(Boolean);
+    const dia = '<svg viewBox="0 0 20 20"><path d="M10 1l9 9-9 9-9-9z" fill="var(--fx-accent)"/></svg>';
+    const one = words.map(w => '<span>' + w.replace(/</g, '&lt;') + dia + '</span>').join('');
+    m.classList.add('fx-band'); m.setAttribute('aria-hidden', 'true'); m.innerHTML = '<div class="fx-track">' + one + one + one + one + '</div>';
+    if (RM) return;
+    let lastY = scrollY; const anim = () => m.firstChild.getAnimations()[0];
+    ticks.push(() => { const v = scrollY - lastY; lastY = scrollY; const a = anim(); if (a) a.playbackRate = Math.min(6, 1 + Math.abs(v) / 6); /* mindig előre, sosem áll meg (Márton) */ });
+    setInterval(() => { const a = anim(); if (a && a.playbackRate > 1.05) a.playbackRate = a.playbackRate * .85 + .15; if (a && a.playState !== 'running') a.play(); }, 120);
+  });
+  // fény a kártyákon
+  $$('[data-fx-spot]').forEach(el => {
+    const set = e => { const r = el.getBoundingClientRect(); el.style.setProperty('--fx-mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--fx-my', (e.clientY - r.top) + 'px'); };
+    el.addEventListener('pointermove', set);
+    el.addEventListener('pointerdown', e => { set(e); el.classList.add('fx-tap'); setTimeout(() => el.classList.remove('fx-tap'), 650); });
+  });
+  // háttér-motívumok
+  const plans = [
+    (m) => `<span class="fx-mono" style="right:-6%;top:4%">${m[0]}</span><div class="fx-dots" style="left:-40px;top:46%"></div><div class="fx-dia spin" style="right:8%;top:38%"></div><div class="fx-dia float" style="left:5%;top:72%;width:14px;height:14px"></div><div class="fx-line" style="right:5%;top:58%"></div><div class="fx-orb" style="right:-80px;bottom:-60px"></div>`,
+    (m) => `<span class="fx-mono" style="left:-5%;top:-4%">${m[1] || m[0]}</span><div class="fx-dots" style="right:-30px;top:8%"></div><div class="fx-dia spin" style="right:7%;top:22%;width:26px;height:26px"></div><div class="fx-dia float" style="left:40%;top:88%;width:12px;height:12px"></div><div class="fx-orb" style="left:-90px;bottom:-40px"></div>`,
+    (m) => `<span class="fx-mono" style="right:-6%;top:44%">${m[0]}</span><div class="fx-dots" style="left:-50px;top:4%"></div><div class="fx-dia float" style="left:6%;top:30%;width:16px;height:16px"></div><div class="fx-dia spin" style="right:9%;top:6%;width:20px;height:20px"></div><div class="fx-line" style="left:3%;top:56%"></div>`,
+  ];
+  const decos = [];
+  $$('[data-fx-deco]').forEach((sec, i) => {
+    const mono = (sec.getAttribute('data-fx-deco') || 'O').toUpperCase();
+    sec.classList.add('fx-deco-host');
+    const d = document.createElement('div'); d.className = 'fx-deco' + (sec.hasAttribute('data-fx-deco-dark') ? ' dark' : ''); d.setAttribute('aria-hidden', 'true');
+    d.innerHTML = plans[i % plans.length](mono); sec.prepend(d); decos.push(d); seen.observe(d);
+  });
+  if (!RM && decos.length) ticks.push(() => decos.forEach(d => {
+    const r = d.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const p = r.top / innerHeight; [...d.children].forEach((el, i) => { el.style.translate = '0 ' + (p * (34 + (i % 4) * 24)).toFixed(1) + 'px'; });
+  }));
+  // animált mobilmenü
+  const mBtn = $('[data-fx-menu-btn]'), menu = $('[data-fx-menu]');
+  if (mBtn && menu) {
+    if (header && getComputedStyle(header).position === 'static') header.style.position = 'relative';
+    $$('a', menu).forEach((a, i) => a.style.setProperty('--fx-d', (180 + i * 60) + 'ms'));
+    const setMenu = open => {
+      document.documentElement.style.setProperty('--fx-hh', hh() + 'px');
+      menu.classList.toggle('fx-open', open); mBtn.classList.toggle('fx-open', open);
+      document.documentElement.classList.toggle('fx-lock', open); mBtn.setAttribute('aria-expanded', open);
+    };
+    mBtn.addEventListener('click', e => { e.preventDefault(); e.stopImmediatePropagation(); setMenu(!menu.classList.contains('fx-open')); }, true);
+    $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+    addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('fx-open')) { setMenu(false); mBtn.focus(); } });
+    addEventListener('resize', () => { if (innerWidth >= 1024 && menu.classList.contains('fx-open')) setMenu(false); });
+  }
+  onScroll();
+})();
+</script>
+
+
+</body>
+</html>
